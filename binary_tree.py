@@ -52,7 +52,47 @@ def postorder_print(start, traversal):
 
     return traversal
 
+# levelorder traversal of binary tree
+def levelorder_print(start, traversal):
+    if start is None:
+        return
+
+    queue = []
+    queue.insert(0, start)
+    while len(queue) > 0:
+        traversal += str(queue[-1].value) + "->"
+        node = queue.pop()
+        if node.left:
+            queue.insert(0, node.left)
+        if node.right:
+            queue.insert(0, node.right)
+
+    return traversal
+
+def reverse_levelorder_print(start, traversal):
+    if start is None:
+        return
+    
+    queue = []
+    stack = []
+    queue.insert(0, start)
+    
+    while len(queue) > 0:
+        node = queue.pop()
+        stack.append(node)
+
+        if node.right:
+            queue.insert(0, node.right)
+        if node.left:
+            queue.insert(0, node.left)
+    
+    while len(stack) > 0:
+        traversal += str(stack.pop().value) + "->"
+
+    return traversal
 
 print(preorder_print(tree, ""))
 print(inorder_print(tree, ""))
 print(postorder_print(tree, ""))
+print(levelorder_print(tree, ""))
+print(reverse_levelorder_print(tree, ""))
