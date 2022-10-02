@@ -69,6 +69,7 @@ def levelorder_print(start, traversal):
 
     return traversal
 
+# reverse levelorder traversal of binary tree
 def reverse_levelorder_print(start, traversal):
     if start is None:
         return
@@ -91,8 +92,52 @@ def reverse_levelorder_print(start, traversal):
 
     return traversal
 
+# calculate height of binary tree
+# 1. recursively, refer to preorder, inorder or postorder
+# 2. use stack
+def tree_height(start):
+    if start is None:
+        return -1
+    left = tree_height(start.left)
+    right = tree_height(start.right)
+
+    return 1 + max(left, right)
+
+# calculate size of binary tree recursively
+def tree_size(start, size):
+    if start:
+        size += 1
+        size = tree_size(start.left, size)
+        size = tree_size(start.right, size)
+    
+    return size
+
+# calculate size of binary with stack
+def tree_size_stack(start):
+    if start is None:
+        return 0
+
+    stack = []
+    stack.insert(0, start)
+    size = 1
+    while stack:
+        node = stack.pop()
+        if start.left:
+            size += 1
+            stack.insert(0, node.left)
+        if start.right:
+            size += 1
+            stack.insert(0, node.right)
+
+    return size
+
 print(preorder_print(tree, ""))
 print(inorder_print(tree, ""))
 print(postorder_print(tree, ""))
 print(levelorder_print(tree, ""))
 print(reverse_levelorder_print(tree, ""))
+print(tree_height(tree))
+print(tree_size(tree, 0))
+print(tree.left.value)
+print(tree.right.value)
+print(tree_size_stack(tree))
