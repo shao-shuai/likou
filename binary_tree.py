@@ -122,10 +122,10 @@ def tree_size_stack(start):
     size = 1
     while stack:
         node = stack.pop()
-        if start.left:
+        if node.left:
             size += 1
             stack.insert(0, node.left)
-        if start.right:
+        if node.right:
             size += 1
             stack.insert(0, node.right)
 
@@ -138,6 +138,4 @@ print(levelorder_print(tree, ""))
 print(reverse_levelorder_print(tree, ""))
 print(tree_height(tree))
 print(tree_size(tree, 0))
-print(tree.left.value)
-print(tree.right.value)
 print(tree_size_stack(tree))
