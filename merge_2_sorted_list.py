@@ -23,14 +23,26 @@ def merge(a, b):
 
     return res
     
+def merge_sort(arr):
+    if len(arr) < 2:
+        return arr
+
+    mid = int(len(arr) / 2)
+    left = arr[:mid]
+    right = arr[mid:]
+    left = merge_sort(left)
+    right = merge_sort(right)
+
+    return merge(left, right)
 
 
+# a = [1,3,5,7,9]
+# b = [2,4,6,8]
+# e = [1,2,3]
+# f = [100, 200, 300]
+# c = merge(a, b) # c is [1,2,3,4,5,6,7,8,9]
+# g = merge(e, f)
+# print(c)
+# print(g)
 
-a = [1,3,5,7,9]
-b = [2,4,6,8]
-e = [1,2,3]
-f = [100, 200, 300]
-c = merge(a, b) # c is [1,2,3,4,5,6,7,8,9]
-g = merge(e, f)
-print(c)
-print(g)
+print(merge_sort([12,3,4,1,9,5,100,8]))
