@@ -1,3 +1,13 @@
-nums = [1,3,6,10,12,15]
-nums = [num for num in nums if num % 2 == 0 and num % 3 == 0]
-print(nums)
+def test(nums):
+    leftSum = 0
+    rightSum = sum(nums[1:])
+    if leftSum == rightSum:
+        return 0
+
+    for i in range(1,len(nums)):
+        leftSum += nums[i-1]
+        rightSum -= nums[i]
+        if leftSum == rightSum:
+            return i
+
+print(test([2,5]))
