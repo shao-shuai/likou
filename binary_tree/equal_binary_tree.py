@@ -3,23 +3,7 @@
 # Then invert the cloned tree -> def invert(root)
 # Final compare the 2 trees -> def equal(a, b)
 
-class Node:
-    def __init__(self, val, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-    def addLeft(self, val):
-        newNode = Node(val)
-        self.left = newNode
-
-        return newNode
-
-    def addRight(self, val):
-        newNode = Node(val)
-        self.right = newNode
-
-        return newNode
+from tree.treeclass import Node
 
 root = Node(1)
 left = root.addLeft(2)
@@ -28,6 +12,14 @@ left.addLeft(4)
 left.addRight(5)
 right.addLeft(6)
 right.addRight(7)
+
+root2 = Node(1)
+left2 = root2.addLeft(2)
+right2 = root2.addRight(3)
+left2.addLeft(4)
+left2.addRight(5)
+right2.addLeft(6)
+right2.addRight(8)
 
 def clone(root):
     if root is None:
@@ -58,6 +50,18 @@ def invert(root):
 
     return root
 
+def equal(a, b):
+    if a is None and b is None:
+        return True
+
+    if a is None or b is None:
+        return False
+
+    if a.val != b.val:
+        return False
+
+    return equal(a.left, b.left) and equal(a.right, b.right)
+    
 copy = clone(root)
-traverse(root)
-traverse(copy)
+print(equal(root, copy))
+print(equal(root, root2))
