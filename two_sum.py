@@ -27,7 +27,7 @@ def find_two_p(nums, target):
         elif nums[small] + nums[large] > target:
             large -= 1
         else:
-            return true
+            return True
 
 a = [3,2,4]
 print(find_two_b(a, 6))
