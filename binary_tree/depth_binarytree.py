@@ -7,9 +7,16 @@ right = root.addRight(3)
 left.addLeft(4)
 left.addRight(5)
 right.addLeft(6)
-right.addRight(7)
+aa = right.addRight(7)
+aa.addLeft(11)
+aa.addRight(12)
 
 def depth(root):
+
+    # watch this condition
+    if root is None:
+        return 0
+
     if root.left == None and root.right == None:
         return 1
 
