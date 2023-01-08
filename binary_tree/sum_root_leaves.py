@@ -21,10 +21,22 @@ def bfs(root):
 
     return ans
 
+def dfs(root, cur):
+    if root is None:
+        return 0
+
+    if root.left is None and root.right is None:
+        return cur * 10 + root.val
+
+    a = dfs(root.left, cur * 10 + root.val)
+    b= dfs(root.right, cur * 10 + root.val)
+
+    return a + b
+
 a = Node(1)
 a_left = a.addLeft(9)
 a.addRight(8)
 a_left.addLeft(2)
 
-print(bfs(a))
+print(dfs(a, 0))
         
